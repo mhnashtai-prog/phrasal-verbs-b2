@@ -1,0 +1,690 @@
+{
+  "meta": {
+    "title": "Phrasal Verbs",
+    "level": "B2",
+    "version": "2.0"
+  },
+
+  "verbs": [
+    {
+      "id": "take",
+      "label": "TAKE",
+      "color": "#3d9e95",
+      "colorRgb": "61,158,149",
+      "items": [
+        {
+          "particle": "off",
+          "meaning": "to remove clothing; (of aircraft) to leave the ground",
+          "example": "The plane will take _____ at 3pm from Heathrow airport.",
+          "options": ["off", "up", "on", "away"]
+        },
+        {
+          "particle": "up",
+          "meaning": "to begin a hobby or activity; to occupy time or space",
+          "example": "I've decided to take _____ tennis as a hobby this year.",
+          "options": ["up", "on", "over", "in"]
+        },
+        {
+          "particle": "on",
+          "meaning": "to accept responsibility; to employ someone",
+          "example": "She took _____ a lot of responsibility in her new job.",
+          "options": ["on", "over", "up", "back"]
+        },
+        {
+          "particle": "over",
+          "meaning": "to gain control of something; to begin someone else's job",
+          "example": "The new manager will take _____ from Mr. Smith next month.",
+          "options": ["over", "on", "after", "back"]
+        },
+        {
+          "particle": "after",
+          "meaning": "to resemble a parent or relative in appearance or character",
+          "example": "He takes _____ his father — they look almost identical.",
+          "options": ["after", "over", "back", "in"]
+        },
+        {
+          "particle": "back",
+          "meaning": "to return something; to withdraw a statement or promise",
+          "example": "I'd like to take _____ what I said earlier — I was wrong.",
+          "options": ["back", "out", "away", "in"]
+        },
+        {
+          "particle": "out",
+          "meaning": "to remove something; to invite someone to go somewhere socially",
+          "example": "Let me take you _____ for dinner to celebrate your promotion.",
+          "options": ["out", "in", "away", "back"]
+        },
+        {
+          "particle": "in",
+          "meaning": "to provide shelter; to understand; to deceive",
+          "example": "The refugees were taken _____ by local families during the crisis.",
+          "options": ["in", "on", "back", "away"]
+        },
+        {
+          "particle": "away",
+          "meaning": "to remove or subtract; to buy food to eat elsewhere",
+          "example": "The police took the suspect _____ for questioning yesterday.",
+          "options": ["away", "out", "back", "down"]
+        },
+        {
+          "particle": "down",
+          "meaning": "to write information; to remove something from a wall or high place",
+          "example": "Please take _____ these important points in your notebook.",
+          "options": ["down", "away", "back", "out"]
+        }
+      ]
+    },
+    {
+      "id": "go",
+      "label": "GO",
+      "color": "#4a7fb5",
+      "colorRgb": "74,127,181",
+      "items": [
+        {
+          "particle": "on",
+          "meaning": "to continue; to happen; to talk at great length",
+          "example": "The meeting went _____ for three hours without a break.",
+          "options": ["on", "out", "up", "over"]
+        },
+        {
+          "particle": "out",
+          "meaning": "to leave home for social reasons; to stop burning",
+          "example": "Would you like to go _____ for dinner this weekend?",
+          "options": ["out", "on", "away", "off"]
+        },
+        {
+          "particle": "off",
+          "meaning": "to explode; to ring (alarm); to become bad (food)",
+          "example": "The bomb could go _____ at any moment according to experts.",
+          "options": ["off", "on", "out", "away"]
+        },
+        {
+          "particle": "through",
+          "meaning": "to experience something difficult; to examine carefully",
+          "example": "Let's go _____ the plan one more time before the presentation.",
+          "options": ["through", "over", "on", "back"]
+        },
+        {
+          "particle": "over",
+          "meaning": "to review or examine; to be received in a particular way",
+          "example": "Can you go _____ my essay and check for grammar mistakes?",
+          "options": ["over", "through", "back", "on"]
+        },
+        {
+          "particle": "up",
+          "meaning": "to increase; to be built or erected",
+          "example": "House prices have gone _____ significantly in the last year.",
+          "options": ["up", "on", "over", "ahead"]
+        },
+        {
+          "particle": "back",
+          "meaning": "to return to a place or previous state",
+          "example": "We can't go _____ on our promise to help them move house.",
+          "options": ["back", "away", "through", "over"]
+        },
+        {
+          "particle": "ahead",
+          "meaning": "to proceed with something; to take place as planned",
+          "example": "Despite the difficulties, we decided to go _____ with the project.",
+          "options": ["ahead", "on", "through", "up"]
+        },
+        {
+          "particle": "down",
+          "meaning": "to decrease; to sink; to be remembered in a particular way",
+          "example": "The Titanic went _____ after hitting an iceberg in 1912.",
+          "options": ["down", "away", "back", "off"]
+        },
+        {
+          "particle": "away",
+          "meaning": "to leave a place; to disappear",
+          "example": "I wish this headache would go _____ — I've had it all day.",
+          "options": ["away", "off", "out", "down"]
+        }
+      ]
+    },
+    {
+      "id": "look",
+      "label": "LOOK",
+      "color": "#c94f6d",
+      "colorRgb": "201,79,109",
+      "items": [
+        {
+          "particle": "after",
+          "meaning": "to take care of someone or something",
+          "example": "Can you look _____ my cat while I'm on holiday next week?",
+          "options": ["after", "for", "over", "into"]
+        },
+        {
+          "particle": "for",
+          "meaning": "to search for something or someone",
+          "example": "I've been looking _____ my keys everywhere but can't find them.",
+          "options": ["for", "after", "into", "out"]
+        },
+        {
+          "particle": "forward to",
+          "meaning": "to anticipate something with pleasure",
+          "example": "We're really looking _____ the summer holidays this year.",
+          "options": ["forward to", "back on", "up to", "into"]
+        },
+        {
+          "particle": "into",
+          "meaning": "to investigate or examine carefully",
+          "example": "Police are looking _____ the cause of the mysterious fire.",
+          "options": ["into", "for", "over", "at"]
+        },
+        {
+          "particle": "out",
+          "meaning": "to be careful; to watch for danger",
+          "example": "Look _____! There's a car coming towards you very fast!",
+          "options": ["out", "up", "over", "back"]
+        },
+        {
+          "particle": "up",
+          "meaning": "to search for information in a reference book; to improve",
+          "example": "If you don't know a word, look it _____ in the dictionary.",
+          "options": ["up", "out", "into", "over"]
+        },
+        {
+          "particle": "down on",
+          "meaning": "to consider someone or something as inferior",
+          "example": "She tends to look _____ people who didn't go to university.",
+          "options": ["down on", "up to", "back on", "out for"]
+        },
+        {
+          "particle": "up to",
+          "meaning": "to admire and respect someone greatly",
+          "example": "Young children often look _____ their older siblings and copy them.",
+          "options": ["up to", "down on", "forward to", "back on"]
+        },
+        {
+          "particle": "over",
+          "meaning": "to examine or inspect quickly",
+          "example": "Can you look _____ my homework before I hand it in tomorrow?",
+          "options": ["over", "into", "for", "through"]
+        },
+        {
+          "particle": "back",
+          "meaning": "to think about the past; to remember an earlier time",
+          "example": "When I look _____ on my childhood, I realize how happy I was.",
+          "options": ["back", "over", "into", "out"]
+        }
+      ]
+    },
+    {
+      "id": "get",
+      "label": "GET",
+      "color": "#7b5ea7",
+      "colorRgb": "123,94,167",
+      "items": [
+        {
+          "particle": "up",
+          "meaning": "to rise from bed; to stand up",
+          "example": "I always get _____ at 6:30am to go jogging before breakfast.",
+          "options": ["up", "on", "out", "back"]
+        },
+        {
+          "particle": "on",
+          "meaning": "to board transport; to make progress; to have a good relationship",
+          "example": "How are you getting _____ with your new course at university?",
+          "options": ["on", "up", "along", "through"]
+        },
+        {
+          "particle": "off",
+          "meaning": "to leave transport; to escape punishment",
+          "example": "Please get _____ the bus at the next stop near the hospital.",
+          "options": ["off", "out", "down", "away"]
+        },
+        {
+          "particle": "over",
+          "meaning": "to recover from illness or disappointment",
+          "example": "It took me weeks to get _____ the flu I caught last month.",
+          "options": ["over", "through", "back", "on"]
+        },
+        {
+          "particle": "through",
+          "meaning": "to complete successfully; to make contact by phone",
+          "example": "How will we get _____ all this work before the deadline?",
+          "options": ["through", "over", "by", "on"]
+        },
+        {
+          "particle": "away",
+          "meaning": "to escape; to go on holiday",
+          "example": "The thieves managed to get _____ before the police arrived.",
+          "options": ["away", "off", "out", "back"]
+        },
+        {
+          "particle": "back",
+          "meaning": "to return; to retrieve something taken from you",
+          "example": "What time did you get _____ from your trip to London yesterday?",
+          "options": ["back", "away", "over", "on"]
+        },
+        {
+          "particle": "by",
+          "meaning": "to manage with limited resources or difficulty",
+          "example": "We don't earn much but we manage to get _____ somehow.",
+          "options": ["by", "on", "through", "along"]
+        },
+        {
+          "particle": "along",
+          "meaning": "to have a good relationship with someone",
+          "example": "I get _____ really well with my new flatmates — we're good friends.",
+          "options": ["along", "on", "by", "over"]
+        },
+        {
+          "particle": "down",
+          "meaning": "to make someone feel depressed; to descend",
+          "example": "Don't let exam stress get you _____ — just do your best.",
+          "options": ["down", "off", "away", "back"]
+        }
+      ]
+    },
+    {
+      "id": "keep",
+      "label": "KEEP",
+      "color": "#b8620a",
+      "colorRgb": "184,98,10",
+      "items": [
+        {
+          "particle": "up",
+          "meaning": "to continue at the same rate; to maintain standards",
+          "example": "Well done! Keep _____ the good work and you'll pass the exam.",
+          "options": ["up", "on", "at", "in"]
+        },
+        {
+          "particle": "on",
+          "meaning": "to continue doing something repeatedly",
+          "example": "The rain kept _____ falling all day without stopping once.",
+          "options": ["on", "up", "at", "going"]
+        },
+        {
+          "particle": "off",
+          "meaning": "to stay away from; to avoid something",
+          "example": "Keep _____ the grass! There's a sign saying not to walk on it.",
+          "options": ["off", "out", "away", "back"]
+        },
+        {
+          "particle": "away",
+          "meaning": "to remain at a distance; to prevent from approaching",
+          "example": "Try to keep _____ from junk food if you want to lose weight.",
+          "options": ["away", "off", "back", "out"]
+        },
+        {
+          "particle": "back",
+          "meaning": "to prevent from approaching; to withhold information",
+          "example": "The police kept the crowds _____ while the President's car passed.",
+          "options": ["back", "away", "off", "out"]
+        },
+        {
+          "particle": "out",
+          "meaning": "to remain outside; to prevent from entering",
+          "example": "Please keep _____ of the kitchen while I'm cooking.",
+          "options": ["out", "off", "away", "back"]
+        },
+        {
+          "particle": "to",
+          "meaning": "to stay within limits; to fulfill a promise or arrangement",
+          "example": "You must keep _____ your promise to help with the school concert.",
+          "options": ["to", "up", "on", "in"]
+        },
+        {
+          "particle": "down",
+          "meaning": "to control or limit; to remain at a low level",
+          "example": "The doctor advised him to keep _____ his cholesterol levels.",
+          "options": ["down", "back", "off", "in"]
+        },
+        {
+          "particle": "in",
+          "meaning": "to not reveal information; to confine indoors",
+          "example": "They decided to keep the news _____ until after the wedding.",
+          "options": ["in", "back", "to", "down"]
+        },
+        {
+          "particle": "at",
+          "meaning": "to persist with something; to continue working despite difficulty",
+          "example": "She kept _____ me for hours with her endless complaints.",
+          "options": ["at", "on", "up", "in"]
+        }
+      ]
+    },
+    {
+      "id": "put",
+      "label": "PUT",
+      "color": "#3d9e95",
+      "colorRgb": "61,158,149",
+      "items": [
+        {
+          "particle": "off",
+          "meaning": "to postpone; to cause someone to lose interest or enthusiasm",
+          "example": "Don't put _____ until tomorrow what you can do today!",
+          "options": ["off", "back", "away", "on"]
+        },
+        {
+          "particle": "on",
+          "meaning": "to wear clothing; to switch on; to pretend or perform",
+          "example": "Put _____ your coat — it's freezing outside this morning.",
+          "options": ["on", "up", "away", "back"]
+        },
+        {
+          "particle": "up",
+          "meaning": "to provide accommodation; to erect or display",
+          "example": "We can put you _____ for the night if you miss your train.",
+          "options": ["up", "in", "on", "through"]
+        },
+        {
+          "particle": "away",
+          "meaning": "to store in the proper place; to save money for later",
+          "example": "Please put _____ your toys when you've finished playing.",
+          "options": ["away", "back", "down", "out"]
+        },
+        {
+          "particle": "down",
+          "meaning": "to place on a surface; to criticize; to record in writing",
+          "example": "The teacher had to put the phone _____ during the lesson.",
+          "options": ["down", "away", "back", "out"]
+        },
+        {
+          "particle": "out",
+          "meaning": "to extinguish a fire; to inconvenience someone",
+          "example": "Firefighters managed to put _____ the blaze before it spread.",
+          "options": ["out", "off", "down", "back"]
+        },
+        {
+          "particle": "back",
+          "meaning": "to return to original position; to postpone to a later time",
+          "example": "Can you put _____ the meeting for an hour? I'm running late.",
+          "options": ["back", "off", "away", "down"]
+        },
+        {
+          "particle": "forward",
+          "meaning": "to propose or suggest an idea or plan formally",
+          "example": "She put _____ an interesting idea at the conference yesterday.",
+          "options": ["forward", "up", "out", "through"]
+        },
+        {
+          "particle": "through",
+          "meaning": "to connect by telephone; to cause someone to experience something",
+          "example": "Could you put me _____ to the manager, please? It's urgent.",
+          "options": ["through", "forward", "up", "on"]
+        },
+        {
+          "particle": "up with",
+          "meaning": "to tolerate something unpleasant without complaining",
+          "example": "I don't know how she puts _____ his rude behavior for so long.",
+          "options": ["up with", "up", "off with", "on with"]
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "label": "TURN",
+      "color": "#4a7fb5",
+      "colorRgb": "74,127,181",
+      "items": [
+        {
+          "particle": "on",
+          "meaning": "to switch on a device; to attack suddenly",
+          "example": "Can you turn _____ the lights when you come in? It's dark.",
+          "options": ["on", "up", "over", "out"]
+        },
+        {
+          "particle": "off",
+          "meaning": "to switch off; to cause someone to lose interest",
+          "example": "Don't forget to turn _____ your computer before you leave.",
+          "options": ["off", "on", "down", "out"]
+        },
+        {
+          "particle": "up",
+          "meaning": "to arrive; to increase volume; to be found unexpectedly",
+          "example": "Could you turn _____ the volume? I can't hear the TV properly.",
+          "options": ["up", "on", "over", "out"]
+        },
+        {
+          "particle": "down",
+          "meaning": "to refuse an offer; to reduce volume or heat",
+          "example": "Please turn _____ the music — the neighbors are complaining!",
+          "options": ["down", "off", "back", "away"]
+        },
+        {
+          "particle": "out",
+          "meaning": "to result or happen in a particular way; to attend an event",
+          "example": "Over 500 people turned _____ for the auditions for the play.",
+          "options": ["out", "up", "over", "away"]
+        },
+        {
+          "particle": "into",
+          "meaning": "to transform or change into something completely different",
+          "example": "Water turns _____ ice when the temperature drops below zero.",
+          "options": ["into", "over", "out", "away"]
+        },
+        {
+          "particle": "over",
+          "meaning": "to flip to the other side; to hand over to authorities",
+          "example": "Remember to turn _____ your exam paper when the time is up.",
+          "options": ["over", "out", "around", "back"]
+        },
+        {
+          "particle": "back",
+          "meaning": "to return the way you came; to send back",
+          "example": "It's too late to turn _____ now — we're already committed.",
+          "options": ["back", "around", "away", "down"]
+        },
+        {
+          "particle": "away",
+          "meaning": "to refuse entry; to look in a different direction",
+          "example": "The hotel had to turn guests _____ because they were fully booked.",
+          "options": ["away", "back", "out", "down"]
+        },
+        {
+          "particle": "around",
+          "meaning": "to face the opposite direction; to improve a bad situation",
+          "example": "Turn _____ and face me when I'm talking to you!",
+          "options": ["around", "back", "over", "away"]
+        }
+      ]
+    },
+    {
+      "id": "break",
+      "label": "BREAK",
+      "color": "#c94f6d",
+      "colorRgb": "201,79,109",
+      "items": [
+        {
+          "particle": "down",
+          "meaning": "to stop functioning; to collapse emotionally; to analyze into parts",
+          "example": "My car broke _____ on the motorway and I had to call for help.",
+          "options": ["down", "up", "out", "off"]
+        },
+        {
+          "particle": "up",
+          "meaning": "to end a relationship; to divide into smaller pieces",
+          "example": "The couple broke _____ after twenty years of marriage.",
+          "options": ["up", "down", "off", "out"]
+        },
+        {
+          "particle": "out",
+          "meaning": "to escape; to start suddenly (war, disease, fire)",
+          "example": "A fire broke _____ in the kitchen early this morning.",
+          "options": ["out", "up", "in", "off"]
+        },
+        {
+          "particle": "in",
+          "meaning": "to enter illegally; to interrupt a conversation",
+          "example": "Thieves broke _____ to the shop during the night.",
+          "options": ["in", "out", "into", "off"]
+        },
+        {
+          "particle": "off",
+          "meaning": "to end abruptly; to become detached from the main part",
+          "example": "She broke _____ the conversation and walked away angrily.",
+          "options": ["off", "up", "down", "out"]
+        },
+        {
+          "particle": "through",
+          "meaning": "to make an important discovery; to force a way through an obstacle",
+          "example": "Scientists have broken _____ in their research on the disease.",
+          "options": ["through", "out", "in", "down"]
+        },
+        {
+          "particle": "into",
+          "meaning": "to enter illegally; to suddenly begin laughing or singing",
+          "example": "Someone broke _____ our house while we were on holiday.",
+          "options": ["into", "in", "out", "through"]
+        },
+        {
+          "particle": "away",
+          "meaning": "to escape from control; to separate from a larger group",
+          "example": "The prisoner broke _____ from the guards and ran.",
+          "options": ["away", "out", "off", "through"]
+        },
+        {
+          "particle": "even",
+          "meaning": "to make neither profit nor loss; to reach the point of balance",
+          "example": "It took two years for the business to break _____.",
+          "options": ["even", "out", "down", "up"]
+        },
+        {
+          "particle": "with",
+          "meaning": "to end a relationship or tradition completely",
+          "example": "He decided to break _____ tradition and serve pizza at Christmas.",
+          "options": ["with", "off", "up", "away"]
+        }
+      ]
+    },
+    {
+      "id": "give",
+      "label": "GIVE",
+      "color": "#7b5ea7",
+      "colorRgb": "123,94,167",
+      "items": [
+        {
+          "particle": "up",
+          "meaning": "to stop trying; to surrender; to quit a habit",
+          "example": "Don't give _____ trying — you can learn anything with practice!",
+          "options": ["up", "in", "away", "out"]
+        },
+        {
+          "particle": "in",
+          "meaning": "to surrender; to submit work to a teacher; to yield to pressure",
+          "example": "After arguing for hours, he finally gave _____ and admitted I was right.",
+          "options": ["in", "up", "away", "out"]
+        },
+        {
+          "particle": "away",
+          "meaning": "to donate freely; to reveal a secret or answer unintentionally",
+          "example": "She decided to give _____ her old clothes to charity.",
+          "options": ["away", "out", "in", "up"]
+        },
+        {
+          "particle": "back",
+          "meaning": "to return something to its owner",
+          "example": "Could you give _____ the book I lent you last month?",
+          "options": ["back", "up", "away", "out"]
+        },
+        {
+          "particle": "out",
+          "meaning": "to distribute to a group; to stop functioning; to emit",
+          "example": "The teacher gave _____ the exam papers at the start of the lesson.",
+          "options": ["out", "away", "back", "up"]
+        },
+        {
+          "particle": "off",
+          "meaning": "to emit a smell, heat, or light",
+          "example": "These flowers give _____ a beautiful scent in the morning.",
+          "options": ["off", "out", "away", "up"]
+        },
+        {
+          "particle": "up on",
+          "meaning": "to stop believing in someone's ability to succeed",
+          "example": "Don't give _____ yourself — your teacher still believes in you.",
+          "options": ["up on", "up", "in on", "away on"]
+        },
+        {
+          "particle": "over",
+          "meaning": "to stop doing something annoying; to hand control to someone",
+          "example": "The presenter gave _____ to the next speaker after ten minutes.",
+          "options": ["over", "up", "in", "out"]
+        },
+        {
+          "particle": "rise to",
+          "meaning": "to cause or lead to something (often a problem or situation)",
+          "example": "The new policy gave _____ a great deal of public controversy.",
+          "options": ["rise to", "way to", "up on", "off"]
+        },
+        {
+          "particle": "way",
+          "meaning": "to collapse; to yield; to be replaced by something",
+          "example": "The old bridge finally gave _____ under the weight of the lorry.",
+          "options": ["way", "up", "in", "out"]
+        }
+      ]
+    },
+    {
+      "id": "set",
+      "label": "SET",
+      "color": "#b8620a",
+      "colorRgb": "184,98,10",
+      "items": [
+        {
+          "particle": "up",
+          "meaning": "to establish or arrange; to prepare equipment for use",
+          "example": "They're planning to set _____ a new business in the city centre.",
+          "options": ["up", "out", "off", "in"]
+        },
+        {
+          "particle": "off",
+          "meaning": "to begin a journey; to cause to explode; to trigger an alarm",
+          "example": "What time do you want to set _____ for the airport tomorrow?",
+          "options": ["off", "out", "up", "away"]
+        },
+        {
+          "particle": "out",
+          "meaning": "to begin a journey; to intend to do something; to arrange systematically",
+          "example": "We set _____ to solve the mystery but found no evidence at all.",
+          "options": ["out", "off", "up", "about"]
+        },
+        {
+          "particle": "about",
+          "meaning": "to begin doing something with energy and purpose",
+          "example": "She set _____ reorganizing the office as soon as she arrived.",
+          "options": ["about", "out", "up", "in"]
+        },
+        {
+          "particle": "back",
+          "meaning": "to delay progress; to cost a particular amount of money",
+          "example": "The unexpected repairs set the project _____ by three weeks.",
+          "options": ["back", "off", "down", "aside"]
+        },
+        {
+          "particle": "down",
+          "meaning": "to record in writing; to establish rules or principles formally",
+          "example": "The committee set _____ clear guidelines for all future events.",
+          "options": ["down", "out", "up", "aside"]
+        },
+        {
+          "particle": "in",
+          "meaning": "to begin and seem likely to continue for some time",
+          "example": "If we don't act quickly, bad habits will set _____.",
+          "options": ["in", "up", "out", "on"]
+        },
+        {
+          "particle": "aside",
+          "meaning": "to save or reserve for a specific purpose; to disregard temporarily",
+          "example": "Try to set _____ at least one hour a day for focused study.",
+          "options": ["aside", "back", "down", "away"]
+        },
+        {
+          "particle": "apart",
+          "meaning": "to make someone or something noticeably different or special",
+          "example": "Her confidence and clear ideas set her _____ from the other candidates.",
+          "options": ["apart", "aside", "back", "out"]
+        },
+        {
+          "particle": "forth",
+          "meaning": "to state or explain formally; to begin a journey (literary)",
+          "example": "The report sets _____ the main findings of the two-year study.",
+          "options": ["forth", "out", "forward", "down"]
+        }
+      ]
+    }
+  ]
+}
