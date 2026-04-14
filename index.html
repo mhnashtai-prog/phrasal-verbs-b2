@@ -141,18 +141,19 @@
     .quiz-blank.revealed { border-bottom-color: transparent; }
 
     .quiz-opts {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: .5rem; width: 100%; max-width: 500px;
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: .4rem; width: 100%; max-width: 520px;
     }
     .qopt {
-      font-family: 'Space Grotesk', sans-serif; font-size: clamp(.85rem, 2.2vw, 1.1rem);
-      font-weight: 800; letter-spacing: .04em; text-transform: uppercase;
-      padding: .65rem 1rem; border-radius: .65rem;
+      font-family: 'Space Grotesk', sans-serif; font-size: .6rem;
+      font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      padding: .38rem .9rem; border-radius: 999px;
       background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1);
-      color: rgba(229,229,231,.6); cursor: pointer; transition: all .18s; text-align: center;
+      color: rgba(229,229,231,.5); cursor: pointer; transition: all .18s; text-align: center;
+      white-space: nowrap;
     }
     .qopt:hover:not(.locked) {
-      background: rgba(var(--verb-rgb, 201,169,97), .12);
+      background: rgba(var(--verb-rgb, 201,169,97), .1);
       border-color: rgba(var(--verb-rgb, 201,169,97), .4);
       color: var(--verb-color, var(--gold));
     }
@@ -389,9 +390,8 @@
       .phrase-text.size-small  { font-size: clamp(1.8rem, 8vw, 2.8rem); }
       .phrase-text.size-medium { font-size: clamp(1.3rem, 6.5vw, 2rem); }
       .phrase-text.size-large  { font-size: clamp(1rem, 5vw, 1.6rem); }
-      .quiz-sentence, .gap-sentence { font-size: clamp(.9rem, 5vw, 1.2rem); }
-      .quiz-opts { grid-template-columns: 1fr 1fr; gap: .35rem; }
-      .qopt { font-size: clamp(.78rem, 4vw, .95rem); padding: .5rem .6rem; }
+      .quiz-sentence, .gap-sentence { font-size: clamp(.88rem, 4.5vw, 1.15rem); }
+      .qopt { font-size: .58rem; padding: .32rem .75rem; }
       .bottom-bar { flex-wrap: wrap; height: auto; padding: .55rem 1rem .7rem; gap: .5rem; }
       .stage { bottom: 105px; }
       .progress { bottom: 105px; }
@@ -576,18 +576,19 @@ function renderSlideInner(s) {
 
 /* ── LEARN ── */
 function renderLearn(item) {
-  const verb = verbs[verbIdx];
-  const full = verb.id + ' ' + item.particle;
-  const w = full.split(' ').length;
-  const size = w <= 3 ? 'size-small' : w <= 5 ? 'size-medium' : 'size-large';
-  const parts = full.toUpperCase().split(' ');
-  // verb plain, particle coloured
-  const verbPart = parts.slice(0, -1).join(' ');
-  const particlePart = parts[parts.length - 1];
-  const phraseHtml = `${verbPart} <span class="particle">${particlePart}</span>`;
+  // Build poster sentence: example with particle highlighted in verb colour
+  // Replace the blank with the styled particle
+  const particleUpper = item.particle.toUpperCase();
+  const posterHtml = item.example
+    .toUpperCase()
+    .replace('_____', `<span class="particle">${particleUpper}</span>`);
+
+  // Size by word count
+  const wordCount = item.example.split(/\s+/).length;
+  const size = wordCount <= 8 ? 'size-small' : wordCount <= 14 ? 'size-medium' : 'size-large';
 
   return `
-    <div class="phrase-text ${size}">${phraseHtml}</div>
+    <div class="phrase-text ${size}">${posterHtml}</div>
     <div class="meaning-text">${item.meaning}</div>`;
 }
 
