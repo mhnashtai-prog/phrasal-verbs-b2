@@ -90,7 +90,7 @@
     .slide {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      padding: 2.5rem 3.5rem; gap: 1.2rem;
+      padding: 1.5rem 2rem; gap: .85rem;
       opacity: 0; transform: translateX(60px);
       transition: opacity .42s cubic-bezier(.4,0,.2,1), transform .42s cubic-bezier(.4,0,.2,1);
       pointer-events: none;
@@ -101,13 +101,13 @@
     /* ── LEARN MODE ── */
     .phrase-text {
       font-family: 'Space Grotesk', sans-serif; font-weight: 800;
-      line-height: 1.25; text-align: center; color: #e5e5e7;
-      text-transform: uppercase; letter-spacing: -.025em;
-      max-width: 95%; width: 100%;
+      line-height: 1.18; text-align: center; color: #e5e5e7;
+      text-transform: uppercase; letter-spacing: -.03em;
+      width: 100%;
     }
-    .phrase-text.size-small  { font-size: clamp(2.2rem, 5.5vw, 4rem); }
-    .phrase-text.size-medium { font-size: clamp(1.6rem, 4vw, 2.9rem); }
-    .phrase-text.size-large  { font-size: clamp(1.2rem, 3vw, 2.1rem); }
+    .phrase-text.size-small  { font-size: clamp(3.5rem, 9vw, 7rem); }
+    .phrase-text.size-medium { font-size: clamp(2.8rem, 7.2vw, 5.5rem); }
+    .phrase-text.size-large  { font-size: clamp(2rem, 5.2vw, 4rem); }
 
     .phrase-text .hl {
       background: linear-gradient(135deg, #C9A961 0%, #FFD700 100%);
@@ -387,9 +387,9 @@
 
     @media(max-width:600px){
       .slide { padding: 2rem 1.5rem; }
-      .phrase-text.size-small  { font-size: clamp(1.8rem, 8vw, 2.8rem); }
-      .phrase-text.size-medium { font-size: clamp(1.3rem, 6.5vw, 2rem); }
-      .phrase-text.size-large  { font-size: clamp(1rem, 5vw, 1.6rem); }
+      .phrase-text.size-small  { font-size: clamp(2.6rem, 11vw, 4rem); }
+      .phrase-text.size-medium { font-size: clamp(2rem, 9vw, 3.2rem); }
+      .phrase-text.size-large  { font-size: clamp(1.5rem, 6.5vw, 2.4rem); }
       .quiz-sentence, .gap-sentence { font-size: clamp(.88rem, 4.5vw, 1.15rem); }
       .qopt { font-size: .58rem; padding: .32rem .75rem; }
       .bottom-bar { flex-wrap: wrap; height: auto; padding: .55rem 1rem .7rem; gap: .5rem; }
@@ -585,7 +585,7 @@ function renderLearn(item) {
 
   // Size by word count
   const wordCount = item.example.split(/\s+/).length;
-  const size = wordCount <= 8 ? 'size-small' : wordCount <= 14 ? 'size-medium' : 'size-large';
+  const size = wordCount <= 5 ? 'size-small' : wordCount <= 11 ? 'size-medium' : 'size-large';
 
   return `
     <div class="phrase-text ${size}">${posterHtml}</div>
