@@ -536,6 +536,7 @@ let scoreErr  = 0;
 let streak    = 0;
 let answered  = false;
 let gapChecked = false;
+let reviewMode = false;
 
 /* ── LOAD ── */
 async function loadAll() {
@@ -582,6 +583,7 @@ function switchVerb(i) {
   verbIdx = i;
   current = 0; prev = -1; answered = false; gapChecked = false;
   // Clear per-verb results so previous runs never bleed into new session
+  reviewMode = false;
   results = {}; scoreOk = 0; scoreErr = 0; streak = 0;
   document.getElementById('scoreOk').textContent  = 0;
   document.getElementById('scoreErr').textContent = 0;
@@ -714,20 +716,22 @@ function show(idx, dir) {
     }
   }
   if (els[idx]) {
-    // Reset any lingering answer state on the incoming slide
-    els[idx].querySelectorAll('.qopt').forEach(b => {
-      b.classList.remove('correct', 'wrong', 'reveal', 'locked');
-    });
-    const incomingBlank = els[idx].querySelector('.quiz-blank');
-    if (incomingBlank) { incomingBlank.textContent = '?'; incomingBlank.classList.remove('revealed'); }
-    const incomingFb = els[idx].querySelector('.fb-bar');
-    if (incomingFb) incomingFb.classList.remove('show');
-    const incomingInput = els[idx].querySelector('.gap-input');
-    if (incomingInput) { incomingInput.classList.remove('correct','wrong'); incomingInput.disabled = false; incomingInput.value = ''; }
-    const incomingHint = els[idx].querySelector('.gap-hint');
-    if (incomingHint) { incomingHint.textContent = 'type the missing particle'; incomingHint.classList.remove('show-answer'); }
-    const incomingSubmit = els[idx].querySelector('.gap-submit');
-    if (incomingSubmit) incomingSubmit.disabled = false;
+    // Reset any lingering answer state on the incoming slide (skip in review mode)
+    if (!reviewMode) {
+      els[idx].querySelectorAll('.qopt').forEach(b => {
+        b.classList.remove('correct', 'wrong', 'reveal', 'locked');
+      });
+      const incomingBlank = els[idx].querySelector('.quiz-blank');
+      if (incomingBlank) { incomingBlank.textContent = '?'; incomingBlank.classList.remove('revealed'); }
+      const incomingFb = els[idx].querySelector('.fb-bar');
+      if (incomingFb) incomingFb.classList.remove('show');
+      const incomingInput = els[idx].querySelector('.gap-input');
+      if (incomingInput) { incomingInput.classList.remove('correct','wrong'); incomingInput.disabled = false; incomingInput.value = ''; }
+      const incomingHint = els[idx].querySelector('.gap-hint');
+      if (incomingHint) { incomingHint.textContent = 'type the missing particle'; incomingHint.classList.remove('show-answer'); }
+      const incomingSubmit = els[idx].querySelector('.gap-submit');
+      if (incomingSubmit) incomingSubmit.disabled = false;
+    }
 
     if (dir === 'forward')  els[idx].style.cssText = 'transform:translateX(60px);opacity:0';
     else if (dir === 'back') els[idx].style.cssText = 'transform:translateX(-60px);opacity:0';
@@ -993,16 +997,55 @@ function stopConfetti() {
 function restart() {
   document.getElementById('overlay').classList.remove('show');
   stopConfetti();
+  reviewMode = false;
   results = {}; scoreOk = 0; scoreErr = 0; streak = 0;
   document.getElementById('scoreOk').textContent = 0;
   document.getElementById('scoreErr').textContent = 0;
   build(); paint(); show(0, 'none'); resetAuto(); updateCheckBtn();
 }
+
 function closeOverlay() {
   document.getElementById('overlay').classList.remove('show');
   stopConfetti();
-  // Keep results for dot colouring on review, but allow re-navigation
-  build(); paint(); show(0, 'none'); updateCheckBtn();
+  // REVIEW: repaint slides showing the correct answer in each, then jump to slide 0
+  reviewMode = true;
+  paintReview();
+  show(0, 'none');
+  updateCheckBtn();
+}
+
+/* Paint slides in review state — correct answer shown, result colour applied */
+function paintReview() {
+  const verb = verbs[verbIdx];
+  const container = document.getElementById('slidesContainer');
+  container.innerHTML = slides.map((s, i) => {
+    return `<div class="slide" data-idx="${i}">${renderReview(s)}</div>`;
+  }).join('');
+  // Re-attach dot clicks
+  document.querySelectorAll('.dot').forEach(d =>
+    d.addEventListener('click', e => { e.stopPropagation(); jump(+d.dataset.dot); })
+  );
+}
+
+function renderReview(s) {
+  const { item } = s;
+  const key = verbIdx + '_' + item.particle;
+  const r = results[key];
+  const wordCount = item.example.split(/\s+/).length;
+  const size = wordCount <= 8 ? 'size-small' : wordCount <= 16 ? 'size-medium' : 'size-large';
+  const resultColor = r === 'ok' ? '#4DC98A' : '#E05555';
+  const tick = r === 'ok' ? '✓' : '✗';
+
+  // Sentence with correct particle highlighted in result colour
+  const sentHtml = item.example.toUpperCase().replace('_____',
+    `<span style="color:${resultColor};font-weight:900;text-decoration:underline;text-underline-offset:4px">${item.particle.toUpperCase()}</span>`);
+
+  return `
+    <div class="phrase-text ${size}" style="opacity:.9">${sentHtml}</div>
+    <div style="display:flex;align-items:center;gap:.6rem;margin-top:.2rem">
+      <span style="font-size:1.1rem;color:${resultColor}">${tick}</span>
+      <span style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:rgba(229,229,231,.45);line-height:1.5">${item.meaning}</span>
+    </div>`;
 }
 
 /* ── CHECK BTN ── */
@@ -1078,6 +1121,7 @@ function setMode(m) {
   mode = m;
   document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === m));
   // Fresh session per mode change
+  reviewMode = false;
   results = {}; scoreOk = 0; scoreErr = 0; streak = 0;
   document.getElementById('scoreOk').textContent  = 0;
   document.getElementById('scoreErr').textContent = 0;
