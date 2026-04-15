@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root { --gold: #C9A961; --gold-glow: rgba(201,169,97,0.4); }
+    :root { --gold: #C9A961; --gold-glow: rgba(201,169,97,0.4); --mode-accent: #C9A961; --mode-accent-rgb: 201,169,97; }
     html, body { width: 100%; height: 100%; overflow: hidden; background: #0d0d0d; }
     body { font-family: 'DM Sans', sans-serif; color: #e5e5e7; user-select: none; -webkit-user-select: none; }
 
@@ -70,6 +70,9 @@
     }
     .mode-btn:hover { color: rgba(255,255,255,.7); }
     .mode-btn.active { background: rgba(255,255,255,.13); color: #fff; }
+    .mode-btn[data-mode="learn"].active  { color: var(--verb-color, var(--gold)); background: rgba(var(--verb-rgb,201,169,97),.15); }
+    .mode-btn[data-mode="quiz"].active   { color: #FFD94A; background: rgba(255,217,74,.15); }
+    .mode-btn[data-mode="gap"].active    { color: #A8E063; background: rgba(168,224,99,.15); }
 
     /* ── STAGE ── */
     .stage {
@@ -138,8 +141,8 @@
 
     /* quiz uses .phrase-text + size classes */
     .quiz-blank {
-      display: inline-block; min-width: 80px; border-bottom: 2px solid var(--verb-color, var(--gold));
-      color: var(--verb-color, var(--gold)); font-weight: 900;
+      display: inline-block; min-width: 80px; border-bottom: 2px solid var(--mode-accent);
+      color: var(--mode-accent); font-weight: 900;
       text-align: center; padding: 0 6px; transition: all .3s;
     }
     .quiz-blank.revealed { border-bottom-color: transparent; }
@@ -157,9 +160,9 @@
       white-space: nowrap;
     }
     .qopt:hover:not(.locked) {
-      background: rgba(var(--verb-rgb, 201,169,97), .1);
-      border-color: rgba(var(--verb-rgb, 201,169,97), .4);
-      color: var(--verb-color, var(--gold));
+      background: rgba(var(--mode-accent-rgb), .1);
+      border-color: rgba(var(--mode-accent-rgb), .4);
+      color: var(--mode-accent);
     }
     .qopt.locked { cursor: default; }
     .qopt.correct {
@@ -180,15 +183,15 @@
 
     /* gap uses .phrase-text + size classes */
     .gap-blank-marker {
-      color: var(--verb-color, var(--gold)); font-weight: 900;
+      color: var(--mode-accent); font-weight: 900;
     }
     .gap-input-wrap { display: flex; flex-direction: column; align-items: center; gap: .65rem; }
     .gap-input {
       font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; font-weight: 900;
       letter-spacing: .06em; text-transform: uppercase;
-      background: transparent; border: none; border-bottom: 2px solid var(--verb-color, var(--gold));
-      color: var(--verb-color, var(--gold)); text-align: center; width: 200px; outline: none;
-      padding: .35rem 0; caret-color: var(--verb-color, var(--gold));
+      background: transparent; border: none; border-bottom: 2px solid var(--mode-accent);
+      color: var(--mode-accent); text-align: center; width: 200px; outline: none;
+      padding: .35rem 0; caret-color: var(--mode-accent);
       transition: border-color .2s, color .2s;
     }
     .gap-input::placeholder {
@@ -202,16 +205,16 @@
       letter-spacing: .1em; text-transform: uppercase; color: rgba(229,229,231,.25);
       min-height: 1.2rem; transition: color .2s;
     }
-    .gap-hint.show-answer { color: var(--verb-color, var(--gold)); }
+    .gap-hint.show-answer { color: var(--mode-accent); }
     .gap-submit {
       font-family: 'Space Grotesk', sans-serif; font-size: .58rem; font-weight: 700;
       letter-spacing: .12em; text-transform: uppercase;
       padding: .5rem 1.4rem; border-radius: 999px;
-      background: rgba(var(--verb-rgb, 201,169,97), .1);
-      border: 1px solid rgba(var(--verb-rgb, 201,169,97), .35);
-      color: var(--verb-color, var(--gold)); cursor: pointer; transition: all .18s;
+      background: rgba(var(--mode-accent-rgb), .1);
+      border: 1px solid rgba(var(--mode-accent-rgb), .35);
+      color: var(--mode-accent); cursor: pointer; transition: all .18s;
     }
-    .gap-submit:hover { background: rgba(var(--verb-rgb, 201,169,97), .25); }
+    .gap-submit:hover { background: rgba(var(--mode-accent-rgb), .25); }
     .gap-submit:disabled { opacity: .25; cursor: default; }
 
     /* Feedback bar — shared by quiz & gap */
@@ -300,12 +303,12 @@
       font-family: 'Space Grotesk', sans-serif; font-size: .58rem; font-weight: 700;
       letter-spacing: .12em; text-transform: uppercase;
       padding: .5rem 1.4rem; border-radius: 999px;
-      background: rgba(var(--verb-rgb, 201,169,97), .1);
-      border: 1px solid rgba(var(--verb-rgb, 201,169,97), .35);
-      color: var(--verb-color, var(--gold)); cursor: pointer; transition: all .18s;
+      background: rgba(var(--mode-accent-rgb), .1);
+      border: 1px solid rgba(var(--mode-accent-rgb), .35);
+      color: var(--mode-accent); cursor: pointer; transition: all .18s;
       display: none;
     }
-    .check-btn:hover { background: rgba(var(--verb-rgb, 201,169,97), .25); }
+    .check-btn:hover { background: rgba(var(--mode-accent-rgb), .25); }
 
     .auto-row { display: flex; align-items: center; gap: .5rem; cursor: pointer; flex-shrink: 0; }
     .auto-label {
@@ -568,6 +571,11 @@ function applyVerbTheme() {
   const v = verbs[verbIdx];
   document.documentElement.style.setProperty('--verb-color', v.color);
   document.documentElement.style.setProperty('--verb-rgb', v.colorRgb);
+  // Sync mode accent: learn tracks verb, quiz/gap use fixed colours
+  const _ma = { learn:{color:null,rgb:null}, quiz:{color:'#FFD94A',rgb:'255,217,74'}, gap:{color:'#A8E063',rgb:'168,224,99'} };
+  const _a = _ma[mode] || _ma.learn;
+  document.documentElement.style.setProperty('--mode-accent',     _a.color || v.color);
+  document.documentElement.style.setProperty('--mode-accent-rgb', _a.rgb   || v.colorRgb);
 }
 
 function switchVerb(i) {
@@ -706,6 +714,21 @@ function show(idx, dir) {
     }
   }
   if (els[idx]) {
+    // Reset any lingering answer state on the incoming slide
+    els[idx].querySelectorAll('.qopt').forEach(b => {
+      b.classList.remove('correct', 'wrong', 'reveal', 'locked');
+    });
+    const incomingBlank = els[idx].querySelector('.quiz-blank');
+    if (incomingBlank) { incomingBlank.textContent = '?'; incomingBlank.classList.remove('revealed'); }
+    const incomingFb = els[idx].querySelector('.fb-bar');
+    if (incomingFb) incomingFb.classList.remove('show');
+    const incomingInput = els[idx].querySelector('.gap-input');
+    if (incomingInput) { incomingInput.classList.remove('correct','wrong'); incomingInput.disabled = false; incomingInput.value = ''; }
+    const incomingHint = els[idx].querySelector('.gap-hint');
+    if (incomingHint) { incomingHint.textContent = 'type the missing particle'; incomingHint.classList.remove('show-answer'); }
+    const incomingSubmit = els[idx].querySelector('.gap-submit');
+    if (incomingSubmit) incomingSubmit.disabled = false;
+
     if (dir === 'forward')  els[idx].style.cssText = 'transform:translateX(60px);opacity:0';
     else if (dir === 'back') els[idx].style.cssText = 'transform:translateX(-60px);opacity:0';
     else                     els[idx].style.cssText = '';
@@ -1023,6 +1046,26 @@ function hideXray() {
 }
 
 /* ── MODE ── */
+const MODE_ACCENTS = {
+  learn: { color: null, rgb: null },          // uses --verb-color passthrough
+  quiz:  { color: '#FFD94A', rgb: '255,217,74' },
+  gap:   { color: '#A8E063', rgb: '168,224,99' }
+};
+
+function applyModeAccent() {
+  const a = MODE_ACCENTS[mode];
+  const root = document.documentElement;
+  if (a.color) {
+    root.style.setProperty('--mode-accent',     a.color);
+    root.style.setProperty('--mode-accent-rgb', a.rgb);
+  } else {
+    // Learn: fall back to the current verb colour
+    const v = verbs[verbIdx];
+    root.style.setProperty('--mode-accent',     v.color);
+    root.style.setProperty('--mode-accent-rgb', v.colorRgb);
+  }
+}
+
 function setMode(m) {
   mode = m;
   document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === m));
@@ -1030,6 +1073,7 @@ function setMode(m) {
   results = {}; scoreOk = 0; scoreErr = 0; streak = 0;
   document.getElementById('scoreOk').textContent  = 0;
   document.getElementById('scoreErr').textContent = 0;
+  applyModeAccent();
   build(); paint(); show(0, 'none'); resetAuto(); updateCheckBtn();
 }
 
