@@ -45,6 +45,16 @@
       border-color: var(--verb-color, var(--gold));
       background: rgba(var(--verb-rgb, 201,169,97), .12);
     }
+    /* Score indicator dots on verb tabs */
+    .vtab::after {
+      content: ''; display: inline-block; width: 5px; height: 5px;
+      border-radius: 50%; margin-left: .4rem; vertical-align: middle;
+      opacity: 0; transition: opacity .3s;
+    }
+    .vtab.score-perfect::after { background: #4DC98A; opacity: 1; box-shadow: 0 0 6px rgba(77,201,138,.6); }
+    .vtab.score-great::after   { background: #7dd3fc; opacity: 1; }
+    .vtab.score-ok::after      { background: #fb923c; opacity: 1; }
+    .vtab.score-poor::after    { background: #E05555; opacity: 1; }
 
     /* Mode selector */
     .mode-selector {
@@ -126,13 +136,7 @@
       line-height: 1.75; color: rgba(229,229,231,.55); text-align: center; max-width: 560px;
     }
 
-    /* ── QUIZ MODE ── */
-    .quiz-sentence {
-      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
-      font-size: clamp(1rem, 2.8vw, 1.5rem); line-height: 1.5;
-      text-align: center; text-transform: uppercase; letter-spacing: -.015em;
-      color: #e5e5e7; max-width: 90%;
-    }
+    /* quiz uses .phrase-text + size classes */
     .quiz-blank {
       display: inline-block; min-width: 80px; border-bottom: 2px solid var(--verb-color, var(--gold));
       color: var(--verb-color, var(--gold)); font-weight: 900;
@@ -174,13 +178,7 @@
     @keyframes optPop   { 0%{transform:scale(1)} 40%{transform:scale(1.04)} 100%{transform:scale(1)} }
     @keyframes optShake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 60%{transform:translateX(6px)} }
 
-    /* ── GAP MODE ── */
-    .gap-sentence {
-      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
-      font-size: clamp(1rem, 2.8vw, 1.5rem); line-height: 1.5;
-      text-align: center; text-transform: uppercase; letter-spacing: -.015em;
-      color: #e5e5e7; max-width: 90%;
-    }
+    /* gap uses .phrase-text + size classes */
     .gap-blank-marker {
       color: var(--verb-color, var(--gold)); font-weight: 900;
     }
@@ -343,13 +341,24 @@
       position: fixed; inset: 0; z-index: 200;
       background: rgba(8,8,8,.97); backdrop-filter: blur(28px);
       display: flex; align-items: center; justify-content: center;
-      opacity: 0; pointer-events: none; transition: opacity .45s;
+      opacity: 0; pointer-events: none; transition: opacity .45s; overflow-y: auto;
     }
     .overlay.show { opacity: 1; pointer-events: all; }
-    .ov-inner { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 24px 20px; max-width: 420px; width: 100%; }
+    .ov-inner {
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+      padding: 28px 20px 32px; max-width: 460px; width: 100%; position: relative; z-index: 1;
+    }
+    .ov-perfect {
+      font-family: 'Space Grotesk', sans-serif; font-size: .62rem; font-weight: 700;
+      letter-spacing: .22em; text-transform: uppercase; color: var(--gold);
+      background: rgba(201,169,97,.12); border: 1px solid rgba(201,169,97,.4);
+      padding: .38rem 1.1rem; border-radius: 999px; display: none;
+    }
+    .ov-perfect.show { display: block; animation: pulseBadge 1.8s ease-in-out infinite; }
+    @keyframes pulseBadge { 0%,100%{box-shadow:0 0 0 0 rgba(201,169,97,.4)} 50%{box-shadow:0 0 0 10px rgba(201,169,97,0)} }
     .ov-title {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(48px,13vw,84px); font-weight: 900; letter-spacing: -.025em;
+      font-size: clamp(48px,13vw,84px); font-weight: 900; letter-spacing: -.03em;
       color: var(--verb-color, var(--gold)); line-height: 1;
     }
     .overlay.show .ov-title { animation: popIn .5s cubic-bezier(.34,1.56,.64,1) forwards; }
@@ -363,8 +372,37 @@
     .overlay.show .ov-star:nth-child(3) { animation: starPop .4s cubic-bezier(.34,1.56,.64,1) .5s forwards; }
     .ov-bars { display: flex; gap: 4px; flex-wrap: wrap; justify-content: center; max-width: 300px; }
     .ov-bar { flex: 1; min-width: 14px; max-width: 28px; height: 36px; border-radius: 5px; }
-    .ov-msg { font-size: .88rem; color: rgba(229,229,231,.4); max-width: 280px; text-align: center; line-height: 1.75; }
-    .ov-btns { display: flex; gap: 10px; margin-top: 8px; }
+    .ov-msg { font-size: .85rem; color: rgba(229,229,231,.4); max-width: 300px; text-align: center; line-height: 1.75; }
+    .ov-answers {
+      width: 100%; max-height: 220px; overflow-y: auto;
+      background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07);
+      border-radius: .85rem; padding: .5rem;
+      scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.1) transparent;
+    }
+    .ov-answers::-webkit-scrollbar { width: 4px; }
+    .ov-answers::-webkit-scrollbar-thumb { background: rgba(255,255,255,.1); border-radius: 4px; }
+    .ov-answer-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .45rem .75rem; border-radius: .5rem; margin-bottom: .22rem;
+      border-left: 3px solid transparent;
+      opacity: 0; transform: translateX(-8px);
+      animation: slideInA .35s ease forwards;
+    }
+    .ov-answer-item:last-child { margin-bottom: 0; }
+    @keyframes slideInA { to { opacity: 1; transform: translateX(0); } }
+    .ov-answer-item.ok  { background: rgba(77,201,138,.07); border-left-color: #4DC98A; }
+    .ov-answer-item.err { background: rgba(224,85,85,.07);  border-left-color: #E05555; }
+    .ov-answer-verb {
+      font-family: 'Space Grotesk', sans-serif; font-size: .7rem; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase;
+    }
+    .ov-answer-item.ok  .ov-answer-verb { color: #4DC98A; }
+    .ov-answer-item.err .ov-answer-verb { color: #E05555; }
+    .ov-answer-meaning {
+      font-family: 'DM Sans', sans-serif; font-size: .7rem; color: rgba(229,229,231,.32);
+      text-align: right; max-width: 58%; line-height: 1.4;
+    }
+    .ov-btns { display: flex; gap: 10px; margin-top: 6px; }
     .ov-btn {
       font-family: 'Space Grotesk', sans-serif; font-size: .62rem; font-weight: 700;
       letter-spacing: .15em; padding: .75rem 1.6rem; border-radius: 999px;
@@ -373,6 +411,12 @@
     .ov-btn.primary { background: var(--verb-color, var(--gold)); color: #0d0d0d; border: 2px solid var(--verb-color, var(--gold)); }
     .ov-btn.ghost { background: transparent; color: rgba(229,229,231,.5); border: 1px solid rgba(255,255,255,.15); }
     .ov-btn.ghost:hover { border-color: rgba(255,255,255,.35); color: #e5e5e7; }
+    /* Award popup */
+    .award-popup { position: fixed; inset: 0; z-index: 300; display: flex; align-items: center; justify-content: center; pointer-events: none; opacity: 0; transition: opacity .3s; }
+    .award-popup.show { opacity: 1; }
+    .award-inner { font-size: clamp(80px,22vw,160px); line-height: 1; pointer-events: none; }
+    @keyframes zoomFade { 0%{transform:scale(.4);opacity:0} 40%{transform:scale(1.1);opacity:1} 70%{transform:scale(1);opacity:1} 100%{transform:scale(1.2);opacity:0} }
+    .award-popup.show .award-inner { animation: zoomFade 2s cubic-bezier(.22,1,.36,1) forwards; }
 
     /* Streak flash */
     .streak-flash {
@@ -390,7 +434,7 @@
       .phrase-text.size-small  { font-size: clamp(1.8rem, 8vw, 2.8rem); }
       .phrase-text.size-medium { font-size: clamp(1.3rem, 6.5vw, 2rem); }
       .phrase-text.size-large  { font-size: clamp(1rem, 5vw, 1.6rem); }
-      .quiz-sentence, .gap-sentence { font-size: clamp(.88rem, 4.5vw, 1.15rem); }
+
       .qopt { font-size: .58rem; padding: .32rem .75rem; }
       .bottom-bar { flex-wrap: wrap; height: auto; padding: .55rem 1rem .7rem; gap: .5rem; }
       .stage { bottom: 105px; }
@@ -442,17 +486,26 @@
 
 <!-- RESULTS OVERLAY -->
 <div class="overlay" id="overlay">
+  <canvas id="confettiCanvas" style="position:fixed;inset:0;pointer-events:none;z-index:0;"></canvas>
   <div class="ov-inner">
+    <div class="ov-perfect" id="ovPerfect">✦ Perfect Score ✦</div>
     <div class="ov-title" id="ovTitle">Done</div>
     <div class="ov-score" id="ovScore"></div>
     <div class="ov-stars" id="ovStars"></div>
     <div class="ov-bars" id="ovBars"></div>
     <div class="ov-msg" id="ovMsg"></div>
+    <!-- Answer list -->
+    <div class="ov-answers" id="ovAnswers"></div>
     <div class="ov-btns">
       <button class="ov-btn primary" onclick="restart()">↺ Retry</button>
       <button class="ov-btn ghost" onclick="closeOverlay()">Review</button>
     </div>
   </div>
+</div>
+
+<!-- Award popup for perfect score -->
+<div class="award-popup" id="awardPopup">
+  <div class="award-inner">🏆</div>
 </div>
 
 <div class="streak-flash" id="streakFlash"></div>
@@ -596,10 +649,12 @@ function renderLearn(item) {
 function renderQuiz(item) {
   const opts = shuffled([...item.options]);
   const letters = ['A', 'B', 'C', 'D'];
-  const sentHtml = item.example.replace('_____',
+  const wordCount = item.example.split(/\s+/).length;
+  const size = wordCount <= 8 ? 'size-small' : wordCount <= 16 ? 'size-medium' : 'size-large';
+  const sentHtml = item.example.toUpperCase().replace('_____',
     `<span class="quiz-blank" id="blankSpan">?</span>`);
   return `
-    <div class="quiz-sentence">${sentHtml}</div>
+    <div class="phrase-text ${size}">${sentHtml}</div>
     <div class="quiz-opts">
       ${opts.map((o, i) => `
         <button class="qopt" data-opt="${o}" onclick="chooseOpt('${o.replace(/'/g,"\\'")}','${item.particle.replace(/'/g,"\\'")}',this)">
@@ -614,10 +669,12 @@ function renderQuiz(item) {
 
 /* ── GAP ── */
 function renderGap(item) {
-  const sentHtml = item.example.replace('_____',
+  const wordCount = item.example.split(/\s+/).length;
+  const size = wordCount <= 8 ? 'size-small' : wordCount <= 16 ? 'size-medium' : 'size-large';
+  const sentHtml = item.example.toUpperCase().replace('_____',
     `<span class="gap-blank-marker">_____</span>`);
   return `
-    <div class="gap-sentence">${sentHtml}</div>
+    <div class="phrase-text ${size}">${sentHtml}</div>
     <div class="gap-input-wrap">
       <input class="gap-input" id="gapInput" type="text" placeholder="type the particle…"
         autocomplete="off" autocorrect="off" spellcheck="false"
@@ -792,38 +849,116 @@ function showResults() {
     if (results[verbIdx + '_' + item.particle] === 'ok') ok++;
   });
   const pct = Math.round(ok / total * 100);
-  const ovTitle = document.getElementById('ovTitle');
-  const ovScore = document.getElementById('ovScore');
-  const ovStars = document.getElementById('ovStars');
-  const ovBars  = document.getElementById('ovBars');
-  const ovMsg   = document.getElementById('ovMsg');
+  const perfect = pct === 100;
 
-  ovTitle.textContent = pct === 100 ? 'Perfect!' : pct >= 80 ? 'Brilliant' : pct >= 60 ? 'Good' : 'Keep Going';
-  ovScore.textContent = ok + ' / ' + total + ' · ' + pct + '%';
+  document.getElementById('ovTitle').textContent = perfect ? 'Perfect!' : pct >= 80 ? 'Brilliant' : pct >= 60 ? 'Good' : 'Keep Going';
+  document.getElementById('ovScore').textContent  = ok + ' / ' + total + ' · ' + pct + '%';
+  document.getElementById('ovPerfect').classList.toggle('show', perfect);
 
   const stars = pct >= 90 ? 3 : pct >= 70 ? 2 : pct >= 50 ? 1 : 0;
-  ovStars.innerHTML = Array.from({length:3},(_,i) =>
+  document.getElementById('ovStars').innerHTML = Array.from({length:3},(_,i) =>
     `<span class="ov-star">${i < stars ? '★' : '☆'}</span>`).join('');
-  ovBars.innerHTML = verb.items.map(item => {
+
+  document.getElementById('ovBars').innerHTML = verb.items.map(item => {
     const r = results[verbIdx + '_' + item.particle];
     const bg = r === 'ok' ? '#4DC98A' : r === 'err' ? '#E05555' : 'rgba(255,255,255,.1)';
     return `<div class="ov-bar" style="background:${bg}"></div>`;
   }).join('');
-  ovMsg.textContent = pct === 100
-    ? 'Absolutely flawless. You\'ve mastered this set!'
-    : pct >= 80 ? 'Excellent. Review the red ones and you\'re done.'
+
+  document.getElementById('ovMsg').textContent = perfect
+    ? "Absolutely flawless. You've mastered this set!"
+    : pct >= 80 ? 'Excellent. Review the red ones and you're done.'
     : pct >= 60 ? 'Solid work. Try Learn mode on the missed ones.'
     : 'Go back to Learn mode to build the pattern first.';
 
+  // Answer list — every particle with result and meaning
+  document.getElementById('ovAnswers').innerHTML = verb.items.map((item, i) => {
+    const r = results[verbIdx + '_' + item.particle] || 'unanswered';
+    const cls = r === 'ok' ? 'ok' : 'err';
+    const tick = r === 'ok' ? '✓' : '✗';
+    const delay = i * 40;
+    return `<div class="ov-answer-item ${cls}" style="animation-delay:${delay}ms">
+      <span class="ov-answer-verb">${verb.id.toUpperCase()} ${item.particle.toUpperCase()}</span>
+      <span class="ov-answer-meaning">${item.meaning}</span>
+      <span class="ov-answer-tick">${tick}</span>
+    </div>`;
+  }).join('');
+
+  // Colour the verb tab to reflect score
+  updateTabScore(verbIdx, pct);
+
   document.getElementById('overlay').classList.add('show');
+
+  if (perfect) {
+    triggerConfetti();
+    setTimeout(() => showAwardPopup(), 300);
+  }
+}
+
+function updateTabScore(idx, pct) {
+  const tabs = document.querySelectorAll('.vtab');
+  if (!tabs[idx]) return;
+  tabs[idx].classList.remove('score-perfect','score-great','score-ok','score-poor');
+  if (pct === 100)      tabs[idx].classList.add('score-perfect');
+  else if (pct >= 80)   tabs[idx].classList.add('score-great');
+  else if (pct >= 50)   tabs[idx].classList.add('score-ok');
+  else                  tabs[idx].classList.add('score-poor');
+}
+
+function showAwardPopup() {
+  const popup = document.getElementById('awardPopup');
+  popup.classList.add('show');
+  setTimeout(() => popup.classList.remove('show'), 2200);
+}
+
+/* ── CONFETTI ── */
+let confettiAnim = null;
+let confettiParticles = [];
+
+function triggerConfetti() {
+  const canvas = document.getElementById('confettiCanvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  confettiParticles = Array.from({length: 120}, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height - canvas.height,
+    r: Math.random() * 6 + 3,
+    d: Math.random() * 6 + 2,
+    color: ['#C9A961','#FFD060','#4DC98A','#5B9BD5','#c94f6d','#fff'][Math.floor(Math.random()*6)],
+    tilt: Math.random() * 10 - 10,
+    tiltAngle: 0,
+    tiltAngleInc: Math.random() * 0.07 + 0.05
+  }));
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    confettiParticles.forEach(p => {
+      p.tiltAngle += p.tiltAngleInc; p.y += p.d; p.tilt = Math.sin(p.tiltAngle) * 15;
+      if (p.y > canvas.height) { p.y = -20; p.x = Math.random() * canvas.width; }
+      ctx.beginPath(); ctx.lineWidth = p.r / 2; ctx.strokeStyle = p.color;
+      ctx.moveTo(p.x + p.tilt + p.r/4, p.y);
+      ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r/4); ctx.stroke();
+    });
+    confettiAnim = requestAnimationFrame(draw);
+  }
+  draw();
+  setTimeout(stopConfetti, 5000);
+}
+
+function stopConfetti() {
+  if (confettiAnim) { cancelAnimationFrame(confettiAnim); confettiAnim = null; }
+  const canvas = document.getElementById('confettiCanvas');
+  canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
 }
 
 function restart() {
   document.getElementById('overlay').classList.remove('show');
+  stopConfetti();
   build(); paint(); show(0, 'none'); resetAuto(); updateCheckBtn();
 }
 function closeOverlay() {
   document.getElementById('overlay').classList.remove('show');
+  stopConfetti();
   build(); paint(); show(0, 'none'); updateCheckBtn();
 }
 
