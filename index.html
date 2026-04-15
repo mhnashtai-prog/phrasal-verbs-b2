@@ -573,6 +573,10 @@ function applyVerbTheme() {
 function switchVerb(i) {
   verbIdx = i;
   current = 0; prev = -1; answered = false; gapChecked = false;
+  // Clear per-verb results so previous runs never bleed into new session
+  results = {}; scoreOk = 0; scoreErr = 0; streak = 0;
+  document.getElementById('scoreOk').textContent  = 0;
+  document.getElementById('scoreErr').textContent = 0;
   document.querySelectorAll('.vtab').forEach((b, j) => b.classList.toggle('active', j === i));
   applyVerbTheme();
   build(); paint(); show(0, 'none'); resetAuto();
@@ -812,8 +816,12 @@ function showStreak() {
 function next() {
   if (busy) return;
   if (current >= slides.length - 1) {
-    // End of set — show results
-    showResults(); return;
+    // Only show results when every slide in this set has been answered
+    if (mode !== 'learn') {
+      const allAttempted = slides.every(s => results[verbIdx + '_' + s.item.particle]);
+      if (allAttempted) { showResults(); return; }
+    }
+    return; // sit on last slide, no auto-advance
   }
   busy = true; answered = false; gapChecked = false;
   show(current + 1, 'forward');
@@ -954,11 +962,15 @@ function stopConfetti() {
 function restart() {
   document.getElementById('overlay').classList.remove('show');
   stopConfetti();
+  results = {}; scoreOk = 0; scoreErr = 0; streak = 0;
+  document.getElementById('scoreOk').textContent = 0;
+  document.getElementById('scoreErr').textContent = 0;
   build(); paint(); show(0, 'none'); resetAuto(); updateCheckBtn();
 }
 function closeOverlay() {
   document.getElementById('overlay').classList.remove('show');
   stopConfetti();
+  // Keep results for dot colouring on review, but allow re-navigation
   build(); paint(); show(0, 'none'); updateCheckBtn();
 }
 
@@ -1014,6 +1026,10 @@ function hideXray() {
 function setMode(m) {
   mode = m;
   document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === m));
+  // Fresh session per mode change
+  results = {}; scoreOk = 0; scoreErr = 0; streak = 0;
+  document.getElementById('scoreOk').textContent  = 0;
+  document.getElementById('scoreErr').textContent = 0;
   build(); paint(); show(0, 'none'); resetAuto(); updateCheckBtn();
 }
 
